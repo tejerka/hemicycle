@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  hemicycle:
+    command: npm run start-dev
+    volumes:
+      - .:/srv/app
+    environment:
+      - PUBLIC_URL=http://localhost:8088
+    ports:
+      - "8088:80"
+
+  hemicycle-react-app:
+    build: .
+    working_dir: /srv/app/frontend
+    command: npm start
+    volumes:
+      - .:/srv/app
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
